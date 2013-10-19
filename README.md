@@ -28,7 +28,7 @@ Not all hosts can access to a Triglav server if the server can be reached on the
 
 ## 3. Command executor
 
-We're thinking of that once agents in hosts and a Triglav server are set, the system can provide a feature that is like [MCollective](http://puppetlabs.com/mcollective), even though it might sort of fragile. It sounds, however, practical at least for us.
+We're thinking of that once agents in hosts and a Triglav server are set, the system can provide a feature that is like [MCollective](http://puppetlabs.com/mcollective), even though it might become sort of fragile. It sounds, however, practical at least for us.
 
 ```
           -----> [WAN] --------------------> [Agent]
