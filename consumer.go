@@ -15,6 +15,7 @@ func (self *Consumer) Run() {
 
 		if self.oneShot {
 			self.consume(message)
+			self.queue.Quit()
 			return
 		} else {
 			go self.consume(message)

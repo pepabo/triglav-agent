@@ -13,5 +13,4 @@ func (self *Producer) Run() {
 	}
 
 	self.queue.Push(message)
-	self.queue.Quit()
 }
