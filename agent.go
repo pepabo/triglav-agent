@@ -11,7 +11,7 @@ func (self *Agent) Run() {
 	}
 	consumer := &Consumer{
 		queue:   queue,
-		oneShot: true,
+		oneShot: false,
 	}
 	producer := &Producer{
 		queue: queue,

@@ -5,12 +5,21 @@ type Producer struct {
 }
 
 func (self *Producer) Run() {
-	message := &Message{
-		Tag: "triglav.update.host",
-		Body: map[string]interface{}{
-			"key": "value",
-		},
+	quit := make(chan bool)
+	producerQueue := &Queue{
+		queue: make(chan *Message),
+		quit: quit,
 	}
+	generator := NewGenerator("triglav.update.host", producerQueue, map[string]interface{}{"interval":1})
 
+	go generator.Generate()
+
+	for {
+		message := producerQueue.Pop()
+		self.produce(message)
+	}
+}
+
+func (self *Producer) produce(message *Message) {
 	self.queue.Push(message)
 }
