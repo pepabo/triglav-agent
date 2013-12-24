@@ -7,8 +7,8 @@ import (
 )
 
 func TestWorker(t *testing.T) {
-	Describe(t, "worker.NewWorker()", func() {
-		Context("when tag == triglav.update.host", func() {
+	Describe(t, "worker.NewWorker(message)", func() {
+		Context("when message.tag == triglav.update.host", func() {
 			message := &Message{
 				Tag: "triglav.update.host",
 				Body: map[string]interface{}{
@@ -22,7 +22,7 @@ func TestWorker(t *testing.T) {
 			})
 		})
 
-		Context("when tag is not either of above", func() {
+		Context("when message.tag is not either of above", func() {
 			message := &Message{
 				Tag: "no.such.tag",
 				Body: map[string]interface{}{
