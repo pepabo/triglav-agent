@@ -6,7 +6,7 @@ type Producer struct {
 
 func (self *Producer) Run() {
 	message := &Message{
-		Tag: "triglav",
+		Tag: "triglav.update.host",
 		Body: map[string]interface{}{
 			"key": "value",
 		},
