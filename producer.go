@@ -4,15 +4,15 @@ type Producer struct {
 	queue *Queue
 }
 
-func (self *Producer) Run() {
+func (self *Producer) Run(options map[string]interface{}) {
 	quit := make(chan bool)
 	producerQueue := &Queue{
 		queue: make(chan *Message),
 		quit:  quit,
 	}
-	generator := NewGenerator("triglav.update.host", producerQueue, map[string]interface{}{"interval": 1})
+	generator := NewGenerator("triglav.update.host", producerQueue)
 
-	go generator.Generate()
+	go generator.Generate(options)
 
 	for {
 		message := producerQueue.Pop()

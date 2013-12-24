@@ -1,15 +1,27 @@
 package triglav
 
+import (
+	"log"
+	"reflect"
+)
+
 type Consumer struct {
 	queue   *Queue
 	oneShot bool
 }
 
-func (self *Consumer) Run() {
+func (self *Consumer) Run(options map[string]interface{}) {
+	oneShot := reflect.ValueOf(options["one-shot"])
+
+	if oneShot.Kind() != reflect.Bool {
+		log.Panic("[consumer] `one-shot` must be a Bool value.")
+		return
+	}
+
 	for {
 		message := self.queue.Pop()
 
-		if self.oneShot {
+		if oneShot.Bool() {
 			self.consume(message)
 			self.queue.Quit()
 			return

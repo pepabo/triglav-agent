@@ -7,54 +7,50 @@ import (
 )
 
 type Generator interface {
-	Generate()
+	Generate(options map[string]interface{})
 }
 
-func NewGenerator(name string, queue *Queue, args map[string]interface{}) (generator Generator) {
+func NewGenerator(name string, queue *Queue) (generator Generator) {
 	switch name {
 	case "triglav.update.host":
-		generator = NewUpdateHostGenerator(queue, args)
+		generator = NewUpdateHostGenerator(queue)
 	default:
-		generator = NewNullGenerator(queue, args)
+		generator = NewNullGenerator(queue)
 	}
 	return
 }
 
 type NullGenerator struct {
 	queue *Queue
-	args  map[string]interface{}
 }
 
-func NewNullGenerator(queue *Queue, args map[string]interface{}) (generator Generator) {
+func NewNullGenerator(queue *Queue) (generator Generator) {
 	generator = &NullGenerator{
 		queue: queue,
-		args:  args,
 	}
 	return
 }
 
-func (self *NullGenerator) Generate() {
-
+func (self *NullGenerator) Generate(options map[string]interface{}) {
+	
 }
 
 type UpdateHostGenertor struct {
 	queue *Queue
-	args  map[string]interface{}
 }
 
-func NewUpdateHostGenerator(queue *Queue, args map[string]interface{}) (generator Generator) {
+func NewUpdateHostGenerator(queue *Queue) (generator Generator) {
 	generator = &UpdateHostGenertor{
 		queue: queue,
-		args:  args,
 	}
 	return
 }
 
-func (self *UpdateHostGenertor) Generate() {
-	sec := reflect.ValueOf(self.args["interval"])
+func (self *UpdateHostGenertor) Generate(options map[string]interface{}) {
+	sec := reflect.ValueOf(options["update-host-interval"])
 
 	if sec.Kind() != reflect.Int {
-		log.Panic("[triglav.update.host] `interval` must be an Int value.")
+		log.Panic("[update.host.generator] `interval` must be an Int value.")
 		return
 	}
 

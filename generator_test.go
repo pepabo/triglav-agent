@@ -9,9 +9,7 @@ import (
 func TestGenerator(t *testing.T) {
 	Describe(t, "generator.NewGenerator(name)", func() {
 		Context("when the `name` is triglav.update.host", func() {
-			args := make(map[string]interface{})
-			args["key"] = "value"
-			generator := NewGenerator("triglav.update.host", &Queue{}, args)
+			generator := NewGenerator("triglav.update.host", &Queue{})
 
 			It("should return UpdateHostGenertor", func() {
 				Expect(reflect.TypeOf(generator).String()).To(Equal, "*triglav.UpdateHostGenertor")
@@ -19,9 +17,7 @@ func TestGenerator(t *testing.T) {
 		})
 
 		Context("when the `name` is not either of above", func() {
-			args := make(map[string]interface{})
-			args["key"] = "value"
-			generator := NewGenerator("no.such.generator", &Queue{}, args)
+			generator := NewGenerator("no.such.generator", &Queue{})
 
 			It("should return NullGenerator", func() {
 				Expect(reflect.TypeOf(generator).String()).To(Equal, "*triglav.NullGenerator")
