@@ -1,5 +1,9 @@
 package triglav
 
+import (
+	"log"
+)
+
 type Worker interface {
 	Work()
 }
@@ -23,7 +27,7 @@ func NewNullWorker(message *Message) (worker Worker) {
 }
 
 func (self *NullWorker) Work() {
-
+	log.Println(self.message.String())
 }
 
 type UpdateHostWorker struct {
@@ -36,7 +40,7 @@ func NewUpdateHostWorker(message *Message) (worker Worker) {
 }
 
 func (self *UpdateHostWorker) Work() {
-
+	log.Println(self.message.String())
 }
 
 type UpdateHostProxyWorker struct {
@@ -49,6 +53,6 @@ func NewUpdateHostProxyWorker(message *Message) (worker Worker) {
 }
 
 func (self *UpdateHostProxyWorker) Work() {
-
+	log.Println(self.message.String())
 }
 

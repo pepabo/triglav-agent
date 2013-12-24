@@ -1,9 +1,5 @@
 package triglav
 
-import (
-	"log"
-)
-
 type Consumer struct {
 	queue   *Queue
 	oneShot bool
@@ -24,5 +20,6 @@ func (self *Consumer) Run() {
 }
 
 func (self *Consumer) consume(message *Message) {
-	log.Println(message)
+	worker := NewWorker(message)
+	worker.Work()
 }
