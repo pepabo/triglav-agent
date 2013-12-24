@@ -10,9 +10,12 @@ type Worker interface {
 
 func NewWorker(message *Message) (worker Worker) {
 	switch message.Tag {
-		case "triglav.update.host": worker = NewUpdateHostWorker(message)
-		case "triglav.update.host.proxy": worker = NewUpdateHostProxyWorker(message)
-		default: worker = NewNullWorker(message)
+	case "triglav.update.host":
+		worker = NewUpdateHostWorker(message)
+	case "triglav.update.host.proxy":
+		worker = NewUpdateHostProxyWorker(message)
+	default:
+		worker = NewNullWorker(message)
 	}
 	return
 }
@@ -55,4 +58,3 @@ func NewUpdateHostProxyWorker(message *Message) (worker Worker) {
 func (self *UpdateHostProxyWorker) Work() {
 	log.Println(self.message.String())
 }
-

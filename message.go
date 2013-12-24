@@ -9,7 +9,14 @@ type Message struct {
 	Body map[string]interface{}
 }
 
-func (self *Message) String() (result []byte, err error) {
-	result, err = json.Marshal(self.Body)
+func (self *Message) String() (result string, err error) {
+	bytes, err := json.Marshal(self.Body)
+
+	if err != nil {
+		result = "Malformed JSON"
+	} else {
+		result = string(bytes)
+	}
+
 	return
 }

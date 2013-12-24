@@ -8,9 +8,9 @@ func (self *Producer) Run() {
 	quit := make(chan bool)
 	producerQueue := &Queue{
 		queue: make(chan *Message),
-		quit: quit,
+		quit:  quit,
 	}
-	generator := NewGenerator("triglav.update.host", producerQueue, map[string]interface{}{"interval":1})
+	generator := NewGenerator("triglav.update.host", producerQueue, map[string]interface{}{"interval": 1})
 
 	go generator.Generate()
 
