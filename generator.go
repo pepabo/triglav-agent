@@ -32,7 +32,7 @@ func NewNullGenerator(queue *Queue) (generator Generator) {
 }
 
 func (self *NullGenerator) Generate(options map[string]interface{}) {
-	
+
 }
 
 type UpdateHostGenertor struct {
