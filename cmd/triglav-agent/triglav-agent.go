@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"github.com/kentaro/triglav-agent"
+	"github.com/pepabo/triglav-agent"
 )
 
 var oneShot = flag.Bool(
