@@ -4,7 +4,7 @@ type Agent struct {
 }
 
 func (self *Agent) Run(options map[string]interface{}) {
-	quit := make(chan bool)
+	quit := make(chan struct{})
 	queue := &Queue{
 		queue: make(chan *Message),
 		quit:  quit,

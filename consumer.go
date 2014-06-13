@@ -14,7 +14,7 @@ func (self *Consumer) Run(options map[string]interface{}) {
 	oneShot := reflect.ValueOf(options["one-shot"])
 
 	if oneShot.Kind() != reflect.Bool {
-		log.Panic("[consumer] `one-shot` must be a Bool value.")
+		log.Fatal("[consumer] `one-shot` must be a Bool value.")
 		return
 	}
 
