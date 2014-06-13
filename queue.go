@@ -2,7 +2,7 @@ package triglav
 
 type Queue struct {
 	queue chan *Message
-	quit  chan bool
+	quit  chan struct{}
 }
 
 func (self *Queue) Push(message *Message) {
@@ -15,5 +15,6 @@ func (self *Queue) Pop() (message *Message) {
 }
 
 func (self *Queue) Quit() {
-	self.quit <- true
+	close(self.queue)
+	self.quit <- struct{}{}
 }
